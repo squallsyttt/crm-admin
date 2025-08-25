@@ -2,7 +2,7 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Settings, ExternalLink, Mail, Github, Globe, Code } from 'lucide-react';
+import { Settings, ExternalLink, Mail, Globe, Code } from 'lucide-react';
 
 export default function SettingsPage() {
   const handleContactClick = () => {

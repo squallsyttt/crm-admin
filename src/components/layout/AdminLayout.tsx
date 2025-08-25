@@ -16,7 +16,7 @@ export const AdminLayout = ({ children, title }: AdminLayoutProps) => {
 
   useEffect(() => {
     requireAuth();
-  }, []);
+  }, [requireAuth]);
 
   const toggleSidebar = () => {
     setSidebarCollapsed(!sidebarCollapsed);
