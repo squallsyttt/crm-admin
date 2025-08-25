@@ -39,7 +39,7 @@ const StatCard = ({ title, value, change, icon, trend }: StatCardProps) => {
           <span className={isPositive ? 'text-green-500' : 'text-red-500'}>
             {Math.abs(change)}%
           </span>
-          <span className="ml-1">vs 上月</span>
+          <span className="ml-1">vs last month</span>
         </div>
       </CardContent>
     </Card>
@@ -50,37 +50,37 @@ export const StatsCards = () => {
   const { stats } = useData();
 
   const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat('zh-CN', {
+    return new Intl.NumberFormat('en-US', {
       style: 'currency',
-      currency: 'CNY'
+      currency: 'USD'
     }).format(amount);
   };
 
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
       <StatCard
-        title="总项目数"
+        title="Total Projects"
         value={stats.totalProjects}
         change={stats.projectsGrowth}
         trend="up"
         icon={<FolderOpen className="h-4 w-4" />}
       />
       <StatCard
-        title="总客户数"
+        title="Total Clients"
         value={stats.totalClients}
         change={stats.clientsGrowth}
         trend="up"
         icon={<Users className="h-4 w-4" />}
       />
       <StatCard
-        title="总订单数"
+        title="Total Orders"
         value={stats.totalOrders}
         change={stats.ordersGrowth}
         trend="up"
         icon={<ShoppingCart className="h-4 w-4" />}
       />
       <StatCard
-        title="总收入"
+        title="Total Revenue"
         value={formatCurrency(stats.totalRevenue)}
         change={stats.revenueGrowth}
         trend="up"

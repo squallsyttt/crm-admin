@@ -35,10 +35,10 @@ export default function DashboardPage() {
       {/* 欢迎标题 */}
       <div className="border-b border-gray-200 pb-4">
         <h1 className="text-3xl font-bold text-gray-900">
-          欢迎回来，{user?.name || '管理员'}！
+          Welcome back, {user?.name || 'Admin'}!
         </h1>
         <p className="text-gray-600 mt-2">
-          这里是您的CRM管理系统仪表板，快速查看业务概况和最新动态。
+          Here's your CRM management system dashboard. Quickly view business overview and latest updates.
         </p>
       </div>
 
@@ -59,7 +59,7 @@ export default function DashboardPage() {
         {/* 最新项目 */}
         <Card>
           <CardHeader>
-            <CardTitle>最新项目</CardTitle>
+            <CardTitle>Latest Projects</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
@@ -76,8 +76,8 @@ export default function DashboardPage() {
                         project.status === 'active' ? 'bg-blue-100 text-blue-800' :
                         'bg-yellow-100 text-yellow-800'
                       }`}>
-                        {project.status === 'completed' ? '已完成' : 
-                         project.status === 'active' ? '进行中' : '暂停'}
+                        {project.status === 'completed' ? 'Completed' : 
+                         project.status === 'active' ? 'In Progress' : 'Paused'}
                       </span>
                       <span className="text-xs text-gray-500">
                         {project.techStack.slice(0, 2).join(', ')}
@@ -89,7 +89,7 @@ export default function DashboardPage() {
               ))}
               {projects.length === 0 && (
                 <div className="text-center py-8 text-gray-500">
-                  还没有项目，快去创建第一个项目吧！
+                  No projects yet. Create your first project!
                 </div>
               )}
             </div>
@@ -99,7 +99,7 @@ export default function DashboardPage() {
         {/* 最新订单 */}
         <Card>
           <CardHeader>
-            <CardTitle>最新订单</CardTitle>
+            <CardTitle>Latest Orders</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
@@ -110,7 +110,7 @@ export default function DashboardPage() {
                     <div className="flex-1">
                       <h4 className="font-medium text-gray-900">{order.projectType}</h4>
                       <p className="text-sm text-gray-600 mt-1">
-                        客户: {client?.name || '未知客户'}
+                        Client: {client?.name || 'Unknown Client'}
                       </p>
                       <div className="flex items-center justify-between mt-2">
                         <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
@@ -119,9 +119,9 @@ export default function DashboardPage() {
                           order.status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
                           'bg-red-100 text-red-800'
                         }`}>
-                          {order.status === 'completed' ? '已完成' : 
-                           order.status === 'in_progress' ? '进行中' : 
-                           order.status === 'pending' ? '待处理' : '已取消'}
+                          {order.status === 'completed' ? 'Completed' : 
+                           order.status === 'in_progress' ? 'In Progress' : 
+                           order.status === 'pending' ? 'Pending' : 'Cancelled'}
                         </span>
                         <span className="text-sm font-medium text-gray-900">
                           ¥{order.budget.toLocaleString()}
@@ -133,7 +133,7 @@ export default function DashboardPage() {
               })}
               {orders.length === 0 && (
                 <div className="text-center py-8 text-gray-500">
-                  还没有订单，快去创建第一个订单吧！
+                  No orders yet. Create your first order!
                 </div>
               )}
             </div>

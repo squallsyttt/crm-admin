@@ -42,7 +42,7 @@ export const Header = ({ title }: HeaderProps) => {
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
             <input
               type="text"
-              placeholder="搜索..."
+              placeholder="Search..."
               className="pl-10 pr-4 py-2 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent w-64 bg-white/80 backdrop-blur-sm"
             />
           </div>
@@ -65,28 +65,28 @@ export const Header = ({ title }: HeaderProps) => {
             {showNotifications && (
               <div className="absolute right-0 mt-2 w-80 bg-white/95 backdrop-blur-md rounded-xl card-shadow-lg border border-slate-200/80 z-[9999]">
                 <div className="p-4 border-b border-slate-200">
-                  <h3 className="font-medium text-slate-800">通知</h3>
+                  <h3 className="font-medium text-slate-800">Notifications</h3>
                 </div>
                 <div className="max-h-96 overflow-y-auto">
                   <div className="p-4 border-b border-slate-100">
-                    <p className="text-sm font-medium text-slate-800">新订单创建</p>
-                    <p className="text-sm text-slate-600 mt-1">赵敏创建了数据分析平台开发订单</p>
-                    <p className="text-xs text-slate-400 mt-2">2小时前</p>
+                    <p className="text-sm font-medium text-slate-800">New Order Created</p>
+                    <p className="text-sm text-slate-600 mt-1">Sarah created a data analytics platform development order</p>
+                    <p className="text-xs text-slate-400 mt-2">2 hours ago</p>
                   </div>
                   <div className="p-4 border-b border-slate-100">
-                    <p className="text-sm font-medium text-slate-800">项目状态更新</p>
-                    <p className="text-sm text-slate-600 mt-1">移动端APP开发项目进度更新</p>
-                    <p className="text-xs text-slate-400 mt-2">4小时前</p>
+                    <p className="text-sm font-medium text-slate-800">Project Status Update</p>
+                    <p className="text-sm text-slate-600 mt-1">Mobile app development project progress updated</p>
+                    <p className="text-xs text-slate-400 mt-2">4 hours ago</p>
                   </div>
                   <div className="p-4">
-                    <p className="text-sm font-medium text-slate-800">新客户注册</p>
-                    <p className="text-sm text-slate-600 mt-1">赵敏完成了客户资料注册</p>
-                    <p className="text-xs text-slate-400 mt-2">1天前</p>
+                    <p className="text-sm font-medium text-slate-800">New Client Registration</p>
+                    <p className="text-sm text-slate-600 mt-1">Sarah completed client profile registration</p>
+                    <p className="text-xs text-slate-400 mt-2">1 day ago</p>
                   </div>
                 </div>
                 <div className="p-4 border-t border-slate-200">
                   <button className="text-sm text-blue-600 hover:text-blue-800">
-                    查看所有通知
+                    View All Notifications
                   </button>
                 </div>
               </div>
@@ -120,11 +120,11 @@ export const Header = ({ title }: HeaderProps) => {
                 <div className="p-2">
                   <button className="flex items-center space-x-2 w-full px-3 py-2 text-left text-sm text-slate-700 hover:bg-slate-50/80 rounded-lg">
                     <User className="w-4 h-4" />
-                    <span>个人资料</span>
+                    <span>Profile</span>
                   </button>
                   <button className="flex items-center space-x-2 w-full px-3 py-2 text-left text-sm text-slate-700 hover:bg-slate-50/80 rounded-lg">
                     <Settings className="w-4 h-4" />
-                    <span>账户设置</span>
+                    <span>Account Settings</span>
                   </button>
                   <div className="border-t border-slate-200 mt-2 pt-2">
                     <button 
@@ -132,7 +132,7 @@ export const Header = ({ title }: HeaderProps) => {
                       className="flex items-center space-x-2 w-full px-3 py-2 text-left text-sm text-red-600 hover:bg-red-50/80 rounded-lg"
                     >
                       <LogOut className="w-4 h-4" />
-                      <span>退出登录</span>
+                      <span>Sign Out</span>
                     </button>
                   </div>
                 </div>

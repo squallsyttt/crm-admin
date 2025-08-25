@@ -20,27 +20,27 @@ interface SidebarProps {
 
 const navigationItems = [
   {
-    title: '仪表板',
+    title: 'Dashboard',
     href: '/dashboard',
     icon: LayoutDashboard
   },
   {
-    title: '项目管理',
+    title: 'Projects',
     href: '/dashboard/projects',
     icon: FolderOpen
   },
   {
-    title: '客户管理',
+    title: 'Clients',
     href: '/dashboard/clients',
     icon: Users
   },
   {
-    title: '订单管理',
+    title: 'Orders',
     href: '/dashboard/orders',
     icon: ShoppingCart
   },
   {
-    title: '系统设置',
+    title: 'Settings',
     href: '/dashboard/settings',
     icon: Settings
   }
@@ -63,7 +63,7 @@ export const Sidebar = ({ collapsed, onToggle }: SidebarProps) => {
           <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center shadow-md">
             <span className="text-white font-bold text-sm">CRM</span>
           </div>
-          <span className="font-semibold text-slate-800">管理系统</span>
+          <span className="font-semibold text-slate-800">Admin</span>
         </div>
         
         <button
@@ -120,7 +120,7 @@ export const Sidebar = ({ collapsed, onToggle }: SidebarProps) => {
             'transition-opacity duration-200',
             collapsed && 'opacity-0 w-0 overflow-hidden'
           )}>
-            <p className="text-sm font-medium text-slate-800">系统管理员</p>
+            <p className="text-sm font-medium text-slate-800">System Admin</p>
             <p className="text-xs text-slate-500">admin@example.com</p>
           </div>
         </div>

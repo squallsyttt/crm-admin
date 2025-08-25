@@ -39,7 +39,7 @@ export default function LoginPage() {
         setError(result.message);
       }
     } catch {
-      setError('登录过程中发生错误，请重试');
+      setError('An error occurred during login. Please try again.');
     } finally {
       setIsLoading(false);
     }
@@ -71,19 +71,19 @@ export default function LoginPage() {
             <span className="text-white font-bold text-xl">CRM</span>
           </div>
           <h2 className="mt-6 text-3xl font-bold text-slate-800">
-            欢迎回来
+            Welcome Back
           </h2>
           <p className="mt-2 text-sm text-slate-600">
-            登录到您的CRM管理系统
+            Sign in to your CRM Management System
           </p>
         </div>
 
         {/* 登录表单 */}
         <Card className="card-shadow-lg border-0 backdrop-blur-sm bg-white/95">
           <CardHeader>
-            <CardTitle className="text-center">管理员登录</CardTitle>
+            <CardTitle className="text-center">Admin Login</CardTitle>
             <CardDescription className="text-center">
-              请输入您的登录凭据
+              Please enter your login credentials
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -91,7 +91,7 @@ export default function LoginPage() {
               {/* 邮箱输入 */}
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-1">
-                  邮箱地址
+                  Email Address
                 </label>
                 <Input
                   id="email"
@@ -101,7 +101,7 @@ export default function LoginPage() {
                   required
                   value={formData.email}
                   onChange={handleInputChange}
-                  placeholder="请输入邮箱地址"
+                  placeholder="Enter your email address"
                   className="w-full"
                 />
               </div>
@@ -109,7 +109,7 @@ export default function LoginPage() {
               {/* 密码输入 */}
               <div>
                 <label htmlFor="password" className="block text-sm font-medium text-slate-700 mb-1">
-                  密码
+                  Password
                 </label>
                 <div className="relative">
                   <Input
@@ -120,7 +120,7 @@ export default function LoginPage() {
                     required
                     value={formData.password}
                     onChange={handleInputChange}
-                    placeholder="请输入密码"
+                    placeholder="Enter your password"
                     className="w-full pr-10"
                   />
                   <button
@@ -153,12 +153,12 @@ export default function LoginPage() {
                 {isLoading ? (
                   <>
                     <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                    登录中...
+                    Signing in...
                   </>
                 ) : (
                   <>
                     <LogIn className="w-4 h-4 mr-2" />
-                    登录
+                    Sign In
                   </>
                 )}
               </Button>
@@ -169,8 +169,8 @@ export default function LoginPage() {
             <div className="mt-6 p-4 bg-gradient-to-r from-indigo-50 to-purple-50 border border-indigo-200 rounded-xl backdrop-blur-sm">
               <div className="flex items-center justify-between">
                 <div>
-                  <h4 className="text-sm font-medium text-indigo-900 mb-1">💼 查看开发者作品集</h4>
-                  <p className="text-xs text-indigo-700">了解更多项目和技能</p>
+                  <h4 className="text-sm font-medium text-indigo-900 mb-1">💼 View Developer Portfolio</h4>
+                  <p className="text-xs text-indigo-700">Discover more projects and skills</p>
                 </div>
                 <Button
                   variant="outline"
@@ -179,7 +179,7 @@ export default function LoginPage() {
                   className="flex items-center space-x-1 bg-white/80 hover:bg-white border-indigo-300 text-indigo-700 hover:text-indigo-800"
                 >
                   <Globe className="w-3 h-3" />
-                  <span className="text-xs">访问</span>
+                  <span className="text-xs">Visit</span>
                   <ExternalLink className="w-3 h-3" />
                 </Button>
               </div>
@@ -187,10 +187,10 @@ export default function LoginPage() {
 
             {/* 测试账户信息 */}
             <div className="mt-4 p-4 bg-blue-50/80 border border-blue-200 rounded-xl backdrop-blur-sm">
-              <h4 className="text-sm font-medium text-blue-900 mb-2">测试账户</h4>
+              <h4 className="text-sm font-medium text-blue-900 mb-2">Test Account</h4>
               <div className="text-sm text-blue-700 space-y-1">
-                <p><span className="font-medium">邮箱:</span> admin@example.com</p>
-                <p><span className="font-medium">密码:</span> 123456</p>
+                <p><span className="font-medium">Email:</span> admin@example.com</p>
+                <p><span className="font-medium">Password:</span> 123456</p>
               </div>
             </div>
           </CardContent>
@@ -199,7 +199,7 @@ export default function LoginPage() {
         {/* 底部信息 */}
         <div className="text-center space-y-2">
           <p className="text-xs text-slate-500">
-            CRM管理系统 © 2024 | 
+            CRM Management System © 2024 | 
             <a 
               href="https://griffithportfolio.vercel.app/" 
               target="_blank" 
@@ -211,7 +211,7 @@ export default function LoginPage() {
             </a>
           </p>
           <p className="text-xs text-slate-400">
-            需要定制开发？点击上方链接了解更多
+            Need custom development? Click the link above to learn more
           </p>
         </div>
       </div>

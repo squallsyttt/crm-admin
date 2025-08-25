@@ -26,7 +26,7 @@ const QuickActionCard = ({ title, description, icon, onClick }: QuickActionProps
           </div>
           <Button onClick={onClick} size="sm">
             <Plus className="w-4 h-4 mr-1" />
-            创建
+            Create
           </Button>
         </div>
       </CardContent>
@@ -39,20 +39,20 @@ export const QuickActions = () => {
 
   const actions = [
     {
-      title: '新建项目',
-      description: '创建一个新的项目并开始管理',
+      title: 'New Project',
+      description: 'Create a new project and start managing',
       icon: <FolderPlus className="w-6 h-6" />,
       onClick: () => router.push('/dashboard/projects?action=create')
     },
     {
-      title: '添加客户',
-      description: '添加新的客户到系统中',
+      title: 'Add Client',
+      description: 'Add a new client to the system',
       icon: <UserPlus className="w-6 h-6" />,
       onClick: () => router.push('/dashboard/clients?action=create')
     },
     {
-      title: '创建订单',
-      description: '为客户创建新的订单',
+      title: 'Create Order',
+      description: 'Create a new order for clients',
       icon: <ShoppingCartIcon className="w-6 h-6" />,
       onClick: () => router.push('/dashboard/orders?action=create')
     }
@@ -61,7 +61,7 @@ export const QuickActions = () => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>快速操作</CardTitle>
+        <CardTitle>Quick Actions</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         {actions.map((action, index) => (

@@ -26,13 +26,13 @@ const ClientCard = ({ client }: { client: Client }) => {
   };
 
   const statusLabels = {
-    active: '活跃',
-    inactive: '非活跃',
-    potential: '潜在客户'
+    active: 'Active',
+    inactive: 'Inactive',
+    potential: 'Potential Client'
   };
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('zh-CN', {
+    return new Date(dateString).toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'long',
       day: 'numeric'
@@ -92,7 +92,7 @@ const ClientCard = ({ client }: { client: Client }) => {
           {/* 日期信息 */}
           <div className="flex items-center space-x-1 text-xs text-gray-500 pt-2 border-t border-gray-200">
             <Calendar className="w-3 h-3" />
-            <span>加入于 {formatDate(client.createdAt)}</span>
+            <span>Joined {formatDate(client.createdAt)}</span>
           </div>
 
           {/* 操作按钮 */}
@@ -100,14 +100,14 @@ const ClientCard = ({ client }: { client: Client }) => {
             <div className="flex space-x-2">
               <Button variant="outline" size="sm">
                 <Mail className="w-3 h-3 mr-1" />
-                邮件
+                Email
               </Button>
               <Button variant="outline" size="sm">
                 <Phone className="w-3 h-3 mr-1" />
-                电话
+                Call
               </Button>
             </div>
-            <Button size="sm">查看详情</Button>
+            <Button size="sm">View Details</Button>
           </div>
         </div>
       </CardContent>
@@ -147,12 +147,12 @@ export default function ClientsPage() {
       {/* 页面标题和操作 */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">客户管理</h1>
-          <p className="text-gray-600 mt-2">管理和查看所有客户的详细信息</p>
+          <h1 className="text-3xl font-bold text-gray-900">Client Management</h1>
+          <p className="text-gray-600 mt-2">Manage and view detailed information for all clients</p>
         </div>
         <Button>
           <Plus className="w-4 h-4 mr-2" />
-          新建客户
+          New Client
         </Button>
       </div>
 
@@ -161,42 +161,42 @@ export default function ClientsPage() {
         <div className="relative flex-1 max-w-sm">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
           <Input
-            placeholder="搜索客户..."
+            placeholder="Search clients..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="pl-10"
           />
         </div>
         <div className="flex items-center space-x-2">
-          <span className="text-sm text-gray-700">状态筛选:</span>
+          <span className="text-sm text-gray-700">Filter by status:</span>
           <div className="flex space-x-2">
             <Button
               variant={statusFilter === 'all' ? 'default' : 'outline'}
               size="sm"
               onClick={() => setStatusFilter('all')}
             >
-              全部
+              All
             </Button>
             <Button
               variant={statusFilter === 'active' ? 'default' : 'outline'}
               size="sm"
               onClick={() => setStatusFilter('active')}
             >
-              活跃
+              Active
             </Button>
             <Button
               variant={statusFilter === 'potential' ? 'default' : 'outline'}
               size="sm"
               onClick={() => setStatusFilter('potential')}
             >
-              潜在客户
+              Potential
             </Button>
             <Button
               variant={statusFilter === 'inactive' ? 'default' : 'outline'}
               size="sm"
               onClick={() => setStatusFilter('inactive')}
             >
-              非活跃
+              Inactive
             </Button>
           </div>
         </div>
@@ -211,7 +211,7 @@ export default function ClientsPage() {
                 <User className="w-4 h-4 text-blue-600" />
               </div>
               <div>
-                <p className="text-sm text-gray-600">总客户</p>
+                <p className="text-sm text-gray-600">Total Clients</p>
                 <p className="text-lg font-semibold">{stats.total}</p>
               </div>
             </div>
@@ -221,10 +221,10 @@ export default function ClientsPage() {
           <CardContent className="p-4">
             <div className="flex items-center space-x-2">
               <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
-                <span className="text-green-600 font-semibold text-sm">活</span>
+                <span className="text-green-600 font-semibold text-sm">A</span>
               </div>
               <div>
-                <p className="text-sm text-gray-600">活跃客户</p>
+                <p className="text-sm text-gray-600">Active Clients</p>
                 <p className="text-lg font-semibold">{stats.active}</p>
               </div>
             </div>
@@ -234,10 +234,10 @@ export default function ClientsPage() {
           <CardContent className="p-4">
             <div className="flex items-center space-x-2">
               <div className="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center">
-                <span className="text-yellow-600 font-semibold text-sm">潜</span>
+                <span className="text-yellow-600 font-semibold text-sm">P</span>
               </div>
               <div>
-                <p className="text-sm text-gray-600">潜在客户</p>
+                <p className="text-sm text-gray-600">Potential Clients</p>
                 <p className="text-lg font-semibold">{stats.potential}</p>
               </div>
             </div>
@@ -247,10 +247,10 @@ export default function ClientsPage() {
           <CardContent className="p-4">
             <div className="flex items-center space-x-2">
               <div className="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center">
-                <span className="text-red-600 font-semibold text-sm">停</span>
+                <span className="text-red-600 font-semibold text-sm">I</span>
               </div>
               <div>
-                <p className="text-sm text-gray-600">非活跃</p>
+                <p className="text-sm text-gray-600">Inactive Clients</p>
                 <p className="text-lg font-semibold">{stats.inactive}</p>
               </div>
             </div>
@@ -269,17 +269,17 @@ export default function ClientsPage() {
               <User className="w-12 h-12 mx-auto" />
             </div>
             <h3 className="text-lg font-medium text-gray-900 mb-2">
-              {searchTerm || statusFilter !== 'all' ? '未找到匹配的客户' : '还没有客户'}
+              {searchTerm || statusFilter !== 'all' ? 'No matching clients found' : 'No clients yet'}
             </h3>
             <p className="text-gray-600 mb-4">
               {searchTerm || statusFilter !== 'all' 
-                ? '尝试调整搜索条件或筛选器' 
-                : '开始添加您的第一个客户吧'
+                ? 'Try adjusting your search terms or filters' 
+                : 'Start by adding your first client'
               }
             </p>
             <Button>
               <Plus className="w-4 h-4 mr-2" />
-              新建客户
+              New Client
             </Button>
           </div>
         )}

@@ -39,12 +39,12 @@ const formatRelativeTime = (timestamp: string) => {
   const diffInHours = Math.floor((now.getTime() - time.getTime()) / (1000 * 60 * 60));
   
   if (diffInHours < 1) {
-    return '刚刚';
+    return 'just now';
   } else if (diffInHours < 24) {
-    return `${diffInHours}小时前`;
+    return `${diffInHours}h ago`;
   } else {
     const diffInDays = Math.floor(diffInHours / 24);
-    return `${diffInDays}天前`;
+    return `${diffInDays}d ago`;
   }
 };
 
@@ -52,7 +52,7 @@ export const RecentActivity = () => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>最近活动</CardTitle>
+        <CardTitle>Recent Activity</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         {mockActivities.map((activity) => (
@@ -82,10 +82,10 @@ export const RecentActivity = () => {
                   'inline-flex items-center px-2 py-1 rounded-full text-xs font-medium mt-2',
                   getStatusColor(activity.status)
                 )}>
-                  {activity.status === 'completed' && '已完成'}
-                  {activity.status === 'in_progress' && '进行中'}
-                  {activity.status === 'pending' && '待处理'}
-                  {activity.status === 'active' && '活跃'}
+                  {activity.status === 'completed' && 'Completed'}
+                  {activity.status === 'in_progress' && 'In Progress'}
+                  {activity.status === 'pending' && 'Pending'}
+                  {activity.status === 'active' && 'Active'}
                 </span>
               )}
             </div>
@@ -94,7 +94,7 @@ export const RecentActivity = () => {
         
         <div className="text-center pt-4 border-t border-gray-200">
           <button className="text-sm text-blue-600 hover:text-blue-800 font-medium">
-            查看所有活动
+            View All Activities
           </button>
         </div>
       </CardContent>
