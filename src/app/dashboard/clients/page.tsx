@@ -1,0 +1,289 @@
+'use client'
+
+import { useState } from 'react';
+import { useData } from '@/context/DataContext';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { 
+  Search, 
+  Plus, 
+  Mail, 
+  Phone,
+  Building,
+  User,
+  Calendar,
+  MoreHorizontal
+} from 'lucide-react';
+import { cn } from '@/lib/utils';
+import { Client } from '@/types';
+
+const ClientCard = ({ client }: { client: Client }) => {
+  const statusColors = {
+    active: 'bg-green-100 text-green-800',
+    inactive: 'bg-red-100 text-red-800',
+    potential: 'bg-yellow-100 text-yellow-800'
+  };
+
+  const statusLabels = {
+    active: '活跃',
+    inactive: '非活跃',
+    potential: '潜在客户'
+  };
+
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString('zh-CN', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+  };
+
+  return (
+    <Card className="hover:shadow-md transition-shadow">
+      <CardHeader>
+        <div className="flex items-start justify-between">
+          <div className="flex items-start space-x-3">
+            <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
+              <User className="w-6 h-6 text-gray-500" />
+            </div>
+            <div>
+              <CardTitle className="text-lg font-semibold text-gray-900">
+                {client.name}
+              </CardTitle>
+              {client.company && (
+                <p className="text-sm text-gray-600 mt-1">{client.company}</p>
+              )}
+            </div>
+          </div>
+          <div className="flex items-center space-x-2">
+            <span className={cn(
+              'inline-flex items-center px-2 py-1 rounded-full text-xs font-medium',
+              statusColors[client.status]
+            )}>
+              {statusLabels[client.status]}
+            </span>
+            <Button variant="ghost" size="icon">
+              <MoreHorizontal className="w-4 h-4" />
+            </Button>
+          </div>
+        </div>
+      </CardHeader>
+      <CardContent>
+        <div className="space-y-4">
+          {/* 联系信息 */}
+          <div className="space-y-2">
+            <div className="flex items-center space-x-2 text-sm">
+              <Mail className="w-4 h-4 text-gray-400" />
+              <span className="text-gray-900">{client.email}</span>
+            </div>
+            <div className="flex items-center space-x-2 text-sm">
+              <Phone className="w-4 h-4 text-gray-400" />
+              <span className="text-gray-900">{client.phone}</span>
+            </div>
+            {client.company && (
+              <div className="flex items-center space-x-2 text-sm">
+                <Building className="w-4 h-4 text-gray-400" />
+                <span className="text-gray-900">{client.company}</span>
+              </div>
+            )}
+          </div>
+
+          {/* 日期信息 */}
+          <div className="flex items-center space-x-1 text-xs text-gray-500 pt-2 border-t border-gray-200">
+            <Calendar className="w-3 h-3" />
+            <span>加入于 {formatDate(client.createdAt)}</span>
+          </div>
+
+          {/* 操作按钮 */}
+          <div className="flex items-center justify-between pt-4">
+            <div className="flex space-x-2">
+              <Button variant="outline" size="sm">
+                <Mail className="w-3 h-3 mr-1" />
+                邮件
+              </Button>
+              <Button variant="outline" size="sm">
+                <Phone className="w-3 h-3 mr-1" />
+                电话
+              </Button>
+            </div>
+            <Button size="sm">查看详情</Button>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
+};
+
+export default function ClientsPage() {
+  const { clients } = useData();
+  const [searchTerm, setSearchTerm] = useState('');
+  const [statusFilter, setStatusFilter] = useState<'all' | Client['status']>('all');
+
+  const filteredClients = clients.filter(client => {
+    const matchesSearch = client.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         client.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         (client.company && client.company.toLowerCase().includes(searchTerm.toLowerCase()));
+    
+    const matchesStatus = statusFilter === 'all' || client.status === statusFilter;
+    
+    return matchesSearch && matchesStatus;
+  });
+
+  // 计算客户统计
+  const getClientStats = () => {
+    return {
+      total: clients.length,
+      active: clients.filter(c => c.status === 'active').length,
+      inactive: clients.filter(c => c.status === 'inactive').length,
+      potential: clients.filter(c => c.status === 'potential').length,
+    };
+  };
+
+  const stats = getClientStats();
+
+  return (
+    <div className="space-y-6">
+      {/* 页面标题和操作 */}
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900">客户管理</h1>
+          <p className="text-gray-600 mt-2">管理和查看所有客户的详细信息</p>
+        </div>
+        <Button>
+          <Plus className="w-4 h-4 mr-2" />
+          新建客户
+        </Button>
+      </div>
+
+      {/* 搜索和筛选 */}
+      <div className="flex items-center space-x-4">
+        <div className="relative flex-1 max-w-sm">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+          <Input
+            placeholder="搜索客户..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="pl-10"
+          />
+        </div>
+        <div className="flex items-center space-x-2">
+          <span className="text-sm text-gray-700">状态筛选:</span>
+          <div className="flex space-x-2">
+            <Button
+              variant={statusFilter === 'all' ? 'default' : 'outline'}
+              size="sm"
+              onClick={() => setStatusFilter('all')}
+            >
+              全部
+            </Button>
+            <Button
+              variant={statusFilter === 'active' ? 'default' : 'outline'}
+              size="sm"
+              onClick={() => setStatusFilter('active')}
+            >
+              活跃
+            </Button>
+            <Button
+              variant={statusFilter === 'potential' ? 'default' : 'outline'}
+              size="sm"
+              onClick={() => setStatusFilter('potential')}
+            >
+              潜在客户
+            </Button>
+            <Button
+              variant={statusFilter === 'inactive' ? 'default' : 'outline'}
+              size="sm"
+              onClick={() => setStatusFilter('inactive')}
+            >
+              非活跃
+            </Button>
+          </div>
+        </div>
+      </div>
+
+      {/* 统计信息 */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <Card>
+          <CardContent className="p-4">
+            <div className="flex items-center space-x-2">
+              <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                <User className="w-4 h-4 text-blue-600" />
+              </div>
+              <div>
+                <p className="text-sm text-gray-600">总客户</p>
+                <p className="text-lg font-semibold">{stats.total}</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent className="p-4">
+            <div className="flex items-center space-x-2">
+              <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
+                <span className="text-green-600 font-semibold text-sm">活</span>
+              </div>
+              <div>
+                <p className="text-sm text-gray-600">活跃客户</p>
+                <p className="text-lg font-semibold">{stats.active}</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent className="p-4">
+            <div className="flex items-center space-x-2">
+              <div className="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center">
+                <span className="text-yellow-600 font-semibold text-sm">潜</span>
+              </div>
+              <div>
+                <p className="text-sm text-gray-600">潜在客户</p>
+                <p className="text-lg font-semibold">{stats.potential}</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent className="p-4">
+            <div className="flex items-center space-x-2">
+              <div className="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center">
+                <span className="text-red-600 font-semibold text-sm">停</span>
+              </div>
+              <div>
+                <p className="text-sm text-gray-600">非活跃</p>
+                <p className="text-lg font-semibold">{stats.inactive}</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* 客户列表 */}
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {filteredClients.map((client) => (
+          <ClientCard key={client.id} client={client} />
+        ))}
+        {filteredClients.length === 0 && (
+          <div className="col-span-full text-center py-12">
+            <div className="text-gray-400 mb-4">
+              <User className="w-12 h-12 mx-auto" />
+            </div>
+            <h3 className="text-lg font-medium text-gray-900 mb-2">
+              {searchTerm || statusFilter !== 'all' ? '未找到匹配的客户' : '还没有客户'}
+            </h3>
+            <p className="text-gray-600 mb-4">
+              {searchTerm || statusFilter !== 'all' 
+                ? '尝试调整搜索条件或筛选器' 
+                : '开始添加您的第一个客户吧'
+              }
+            </p>
+            <Button>
+              <Plus className="w-4 h-4 mr-2" />
+              新建客户
+            </Button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
