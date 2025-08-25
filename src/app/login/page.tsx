@@ -6,7 +6,7 @@ import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { LogIn, Eye, EyeOff } from 'lucide-react';
+import { LogIn, Eye, EyeOff, ExternalLink, Globe } from 'lucide-react';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -63,23 +63,23 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-blue-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         {/* Logo和标题 */}
         <div className="text-center">
-          <div className="mx-auto w-16 h-16 bg-blue-600 rounded-xl flex items-center justify-center">
+          <div className="mx-auto w-16 h-16 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-2xl flex items-center justify-center shadow-lg">
             <span className="text-white font-bold text-xl">CRM</span>
           </div>
-          <h2 className="mt-6 text-3xl font-extrabold text-gray-900">
+          <h2 className="mt-6 text-3xl font-bold text-slate-800">
             欢迎回来
           </h2>
-          <p className="mt-2 text-sm text-gray-600">
+          <p className="mt-2 text-sm text-slate-600">
             登录到您的CRM管理系统
           </p>
         </div>
 
         {/* 登录表单 */}
-        <Card>
+        <Card className="card-shadow-lg border-0 backdrop-blur-sm bg-white/95">
           <CardHeader>
             <CardTitle className="text-center">管理员登录</CardTitle>
             <CardDescription className="text-center">
@@ -90,7 +90,7 @@ export default function LoginPage() {
             <form onSubmit={handleSubmit} className="space-y-4">
               {/* 邮箱输入 */}
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-1">
                   邮箱地址
                 </label>
                 <Input
@@ -108,7 +108,7 @@ export default function LoginPage() {
 
               {/* 密码输入 */}
               <div>
-                <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="password" className="block text-sm font-medium text-slate-700 mb-1">
                   密码
                 </label>
                 <div className="relative">
@@ -129,9 +129,9 @@ export default function LoginPage() {
                     className="absolute inset-y-0 right-0 pr-3 flex items-center"
                   >
                     {showPassword ? (
-                      <EyeOff className="h-4 w-4 text-gray-400" />
+                      <EyeOff className="h-4 w-4 text-slate-400" />
                     ) : (
-                      <Eye className="h-4 w-4 text-gray-400" />
+                      <Eye className="h-4 w-4 text-slate-400" />
                     )}
                   </button>
                 </div>
@@ -139,7 +139,7 @@ export default function LoginPage() {
 
               {/* 错误信息 */}
               {error && (
-                <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-md text-sm">
+                <div className="bg-red-50/80 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm backdrop-blur-sm">
                   {error}
                 </div>
               )}
@@ -165,7 +165,28 @@ export default function LoginPage() {
             </form>
 
             {/* 测试账户信息 */}
-            <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-md">
+            {/* 作品集链接 */}
+            <div className="mt-6 p-4 bg-gradient-to-r from-indigo-50 to-purple-50 border border-indigo-200 rounded-xl backdrop-blur-sm">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h4 className="text-sm font-medium text-indigo-900 mb-1">💼 查看开发者作品集</h4>
+                  <p className="text-xs text-indigo-700">了解更多项目和技能</p>
+                </div>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => window.open('https://griffithportfolio.vercel.app/', '_blank')}
+                  className="flex items-center space-x-1 bg-white/80 hover:bg-white border-indigo-300 text-indigo-700 hover:text-indigo-800"
+                >
+                  <Globe className="w-3 h-3" />
+                  <span className="text-xs">访问</span>
+                  <ExternalLink className="w-3 h-3" />
+                </Button>
+              </div>
+            </div>
+
+            {/* 测试账户信息 */}
+            <div className="mt-4 p-4 bg-blue-50/80 border border-blue-200 rounded-xl backdrop-blur-sm">
               <h4 className="text-sm font-medium text-blue-900 mb-2">测试账户</h4>
               <div className="text-sm text-blue-700 space-y-1">
                 <p><span className="font-medium">邮箱:</span> admin@example.com</p>
@@ -176,9 +197,21 @@ export default function LoginPage() {
         </Card>
 
         {/* 底部信息 */}
-        <div className="text-center">
-          <p className="text-xs text-gray-500">
-            CRM管理系统 © 2024 版权所有
+        <div className="text-center space-y-2">
+          <p className="text-xs text-slate-500">
+            CRM管理系统 © 2024 | 
+            <a 
+              href="https://griffithportfolio.vercel.app/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-indigo-600 hover:text-indigo-700 ml-1 inline-flex items-center gap-1"
+            >
+              Griffith Portfolio
+              <ExternalLink className="w-3 h-3" />
+            </a>
+          </p>
+          <p className="text-xs text-slate-400">
+            需要定制开发？点击上方链接了解更多
           </p>
         </div>
       </div>

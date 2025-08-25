@@ -8,12 +8,12 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 const buttonVariants = {
   variant: {
-    default: 'bg-blue-600 text-white hover:bg-blue-700',
-    destructive: 'bg-red-600 text-white hover:bg-red-700',
-    outline: 'border border-gray-300 bg-transparent hover:bg-gray-50',
-    secondary: 'bg-gray-100 text-gray-900 hover:bg-gray-200',
-    ghost: 'hover:bg-gray-100 hover:text-gray-900',
-    link: 'text-blue-600 underline-offset-4 hover:underline'
+    default: 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:from-blue-700 hover:to-indigo-700 shadow-md hover:shadow-lg',
+    destructive: 'bg-gradient-to-r from-red-500 to-pink-600 text-white hover:from-red-600 hover:to-pink-700 shadow-md hover:shadow-lg',
+    outline: 'border border-slate-300 bg-white/80 backdrop-blur-sm hover:bg-slate-50/80 text-slate-700',
+    secondary: 'bg-slate-100/80 backdrop-blur-sm text-slate-800 hover:bg-slate-200/80',
+    ghost: 'hover:bg-slate-100/80 hover:text-slate-900 backdrop-blur-sm',
+    link: 'text-blue-600 underline-offset-4 hover:underline hover:text-blue-700'
   },
   size: {
     default: 'h-10 px-4 py-2',
@@ -28,7 +28,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <button
         className={cn(
-          'inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
+          'inline-flex items-center justify-center rounded-xl text-sm font-medium ring-offset-background transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
           buttonVariants.variant[variant],
           buttonVariants.size[size],
           className

@@ -23,7 +23,7 @@ export const AdminLayout = ({ children, title }: AdminLayoutProps) => {
   };
 
   return (
-    <div className="flex h-screen bg-gray-50">
+    <div className="flex h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       {/* 侧边栏 */}
       <Sidebar collapsed={sidebarCollapsed} onToggle={toggleSidebar} />
       
@@ -34,7 +34,7 @@ export const AdminLayout = ({ children, title }: AdminLayoutProps) => {
         
         {/* 主要内容 */}
         <main className="flex-1 overflow-y-auto">
-          <div className="p-6">
+          <div className="p-6 space-y-6">
             {children}
           </div>
         </main>
@@ -43,7 +43,7 @@ export const AdminLayout = ({ children, title }: AdminLayoutProps) => {
       {/* 移动端遮罩层 */}
       {!sidebarCollapsed && (
         <div 
-          className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
+          className="fixed inset-0 bg-black/30 backdrop-blur-sm z-40 lg:hidden"
           onClick={toggleSidebar}
         />
       )}

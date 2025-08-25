@@ -51,29 +51,29 @@ export const Sidebar = ({ collapsed, onToggle }: SidebarProps) => {
 
   return (
     <div className={cn(
-      'relative flex flex-col h-full bg-white border-r border-gray-200 transition-all duration-300',
+      'relative flex flex-col h-full bg-white/90 backdrop-blur-md border-r border-slate-200/80 card-shadow transition-all duration-300',
       collapsed ? 'w-16' : 'w-64'
     )}>
       {/* Logo区域 */}
-      <div className="flex items-center justify-between p-4 border-b border-gray-200">
+      <div className="flex items-center justify-between p-4 border-b border-slate-200/60">
         <div className={cn(
           'flex items-center space-x-2 transition-opacity duration-200',
           collapsed && 'opacity-0'
         )}>
-          <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+          <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center shadow-md">
             <span className="text-white font-bold text-sm">CRM</span>
           </div>
-          <span className="font-semibold text-gray-900">管理系统</span>
+          <span className="font-semibold text-slate-800">管理系统</span>
         </div>
         
         <button
           onClick={onToggle}
-          className="p-1 rounded-lg hover:bg-gray-100 transition-colors"
+          className="p-1 rounded-lg hover:bg-slate-100/80 transition-colors"
         >
           {collapsed ? (
-            <ChevronRight className="w-4 h-4 text-gray-600" />
+            <ChevronRight className="w-4 h-4 text-slate-600" />
           ) : (
-            <ChevronLeft className="w-4 h-4 text-gray-600" />
+            <ChevronLeft className="w-4 h-4 text-slate-600" />
           )}
         </button>
       </div>
@@ -89,11 +89,11 @@ export const Sidebar = ({ collapsed, onToggle }: SidebarProps) => {
               key={item.href}
               href={item.href}
               className={cn(
-                'flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors',
-                'hover:bg-gray-100',
+                'flex items-center space-x-3 px-3 py-2 rounded-xl text-sm font-medium transition-all duration-200',
+                'hover:bg-slate-100/80 hover:shadow-sm',
                 isActive 
-                  ? 'bg-blue-50 text-blue-600 border-r-2 border-blue-600' 
-                  : 'text-gray-700 hover:text-gray-900',
+                  ? 'bg-gradient-to-r from-blue-50 to-indigo-50 text-blue-600 shadow-sm border-l-4 border-blue-500' 
+                  : 'text-slate-700 hover:text-slate-900',
                 collapsed && 'justify-center'
               )}
             >
@@ -110,18 +110,18 @@ export const Sidebar = ({ collapsed, onToggle }: SidebarProps) => {
       </nav>
 
       {/* 底部用户信息 */}
-      <div className="p-4 border-t border-gray-200">
+      <div className="p-4 border-t border-slate-200/60">
         <div className={cn(
           'flex items-center space-x-3 px-3 py-2',
           collapsed && 'justify-center'
         )}>
-          <div className="w-8 h-8 bg-gray-300 rounded-full flex-shrink-0" />
+          <div className="w-8 h-8 bg-gradient-to-br from-slate-300 to-slate-400 rounded-full flex-shrink-0 shadow-sm" />
           <div className={cn(
             'transition-opacity duration-200',
             collapsed && 'opacity-0 w-0 overflow-hidden'
           )}>
-            <p className="text-sm font-medium text-gray-900">系统管理员</p>
-            <p className="text-xs text-gray-500">admin@example.com</p>
+            <p className="text-sm font-medium text-slate-800">系统管理员</p>
+            <p className="text-xs text-slate-500">admin@example.com</p>
           </div>
         </div>
       </div>
